@@ -214,8 +214,8 @@ class _EditProfileState extends State<EditProfile> {
         elevation: 4,
         backgroundColor: Colors.white,
       ),
-      barrierColor: Colors.black.withOpacity(0.5),
-      barrierDismissible: false,
+      // barrierColor: Colors.black.withOpacity(0.5),
+      // barrierDismissible: false,
     );
   }
 
