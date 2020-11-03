@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:conti/pages/profile.dart';
+import 'package:EgiErdian/pages/profile.dart';
 
 class EditProfile extends StatefulWidget {
   @override

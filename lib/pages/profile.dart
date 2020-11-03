@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:conti/pages/edit_profile.dart';
+import 'package:EgiErdian/pages/edit_profile.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -52,19 +52,19 @@ class _ProfileState extends State<Profile> {
         ),
         child: Column(
           children: <Widget>[
-            Container(
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    'See more about Covid-19',
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.blueAccent,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Container(
+            //   child: Column(
+            //     children: <Widget>[
+            //       Text(
+            //         'See more about Covid-19',
+            //         style: TextStyle(
+            //           fontSize: 14,
+            //           color: Colors.blueAccent,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             SizedBox(
               height: 20,
             ),

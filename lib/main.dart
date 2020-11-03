@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:conti/pages/profile.dart';
+import 'package:EgiErdian/pages/profile.dart';
 
 void main() {
   runApp(MyApp());
