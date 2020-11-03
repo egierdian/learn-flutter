@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_icons/flutter_icons.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:conti/custom/custom_button.dart';
-// import 'package:conti/pages/profile.dart';
+import 'package:conti/pages/profile.dart';
 
 class EditProfile extends StatefulWidget {
   @override
@@ -12,7 +10,10 @@ class EditProfile extends StatefulWidget {
 
 class _EditProfileState extends State<EditProfile> {
   final globalKey = GlobalKey<ScaffoldState>();
+  TextEditingController usernameController = new TextEditingController();
   TextEditingController nameController = new TextEditingController();
+  TextEditingController descriptionController = new TextEditingController();
+  TextEditingController urlController = new TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,12 @@ class _EditProfileState extends State<EditProfile> {
           leading: CloseButton(
             color: Colors.black87,
             onPressed: () {
-              print('Closed');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Profile(),
+                ),
+              );
             },
           ),
           actions: <Widget>[
@@ -39,78 +45,120 @@ class _EditProfileState extends State<EditProfile> {
               color: Colors.black87,
               icon: Icon(Icons.check),
               onPressed: () {
-                print('Clicked');
+                // print('Clicked');
+                if (usernameController.text == '' ||
+                    nameController.text == '' ||
+                    descriptionController.text == '' ||
+                    urlController.text == '') {
+                  showToast('Silahkan isi data!');
+                  // showSnackBar('Silahkan isi data!');
+                } else {
+                  _sendDataBack(context);
+                }
               },
             )
           ]),
       body: Container(
         padding: EdgeInsets.only(
-          top: 64,
-          bottom: 64,
-          left: 24,
-          right: 24,
+          top: 10,
+          bottom: 10,
+          left: 20,
+          right: 20,
         ),
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Container(
+              padding: EdgeInsets.only(
+                bottom: 12,
+              ),
+              child: TextField(
+                controller: usernameController,
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                  labelStyle: TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(
+                bottom: 12,
+              ),
+              child: TextField(
+                controller: nameController,
+                decoration: InputDecoration(
+                  labelText: 'Display Name',
+                  labelStyle: TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(
+                bottom: 12,
+              ),
+              child: TextField(
+                controller: descriptionController,
+                decoration: InputDecoration(
+                  labelText: 'Description',
+                  labelStyle: TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(
+                bottom: 12,
+              ),
+              child: TextField(
+                controller: urlController,
+                decoration: InputDecoration(
+                  labelText: 'Photo URL',
+                  labelStyle: TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(
+                top: 10,
+              ),
+              child: Text(
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.black26,
+                ),
+              ),
+            ),
             // Container(
-            //   child: Center(
-            //     child: Text(
-            //       'EDIT PROFILE',
-            //       style: TextStyle(fontSize: 40, color: Colors.blueAccent),
-            //     ),
+            //   child: CustomButton(
+            //     text: 'Update',
+            //     onPressed: () {
+            //       if (nameController.text == '') {
+            //         //showToast('Please input your name');
+            //         //showSnackBar('Please input your name');
+            //         //showAlertDialogMaterial('Please input your name');
+            //         showAlertDialogCupertino('Please input your name');
+            //       } else {
+            //         // Navigator.push(
+            //         //   context,
+            //         //   MaterialPageRoute(
+            //         //     builder: (context) => Profile(
+            //         //       name: nameController.text,
+            //         //     ),
+            //         //   ),
+            //         // );
+            //       }
+            //     },
             //   ),
             // ),
-            Container(
-              child: TextField(
-                controller: nameController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Your Name',
-                ),
-              ),
-            ),
-            Container(
-              child: TextField(
-                controller: nameController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Your Name',
-                ),
-              ),
-            ),
-            Container(
-              child: TextField(
-                controller: nameController,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Your Name',
-                ),
-              ),
-            ),
-            Container(
-              child: CustomButton(
-                text: 'Update',
-                onPressed: () {
-                  if (nameController.text == '') {
-                    //showToast('Please input your name');
-                    //showSnackBar('Please input your name');
-                    //showAlertDialogMaterial('Please input your name');
-                    showAlertDialogCupertino('Please input your name');
-                  } else {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => Profile(
-                    //       name: nameController.text,
-                    //     ),
-                    //   ),
-                    // );
-                  }
-                },
-              ),
-            ),
           ],
         ),
       ),
@@ -158,6 +206,7 @@ class _EditProfileState extends State<EditProfile> {
           FlatButton(
             child: Text('Yes'),
             onPressed: () {
+              _sendDataBack(context);
               print('Clicked Yes!');
             },
           ),
@@ -170,30 +219,13 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
-  showAlertDialogCupertino(text) {
-    showDialog(
-      context: globalKey.currentContext,
-      builder: (_) => CupertinoAlertDialog(
-        title: Text('Info'),
-        content: Text(text),
-        actions: [
-          CupertinoDialogAction(
-            child: Text('No'),
-            onPressed: () {
-              Navigator.pop(globalKey.currentContext);
-              print('Clicked No!');
-            },
-          ),
-          CupertinoDialogAction(
-            child: Text('Yes'),
-            onPressed: () {
-              print('Clicked Yes!');
-            },
-          ),
-        ],
-      ),
-      barrierColor: Colors.black.withOpacity(0.5),
-      barrierDismissible: false,
-    );
+  // egierdian
+  void _sendDataBack(BuildContext context) {
+    List<String> list = new List<String>();
+    list.add(usernameController.text);
+    list.add(nameController.text);
+    list.add(descriptionController.text);
+    list.add(urlController.text);
+    Navigator.pop(context, list);
   }
 }

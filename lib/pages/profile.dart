@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:conti/pages/edit_profile.dart';
 
 class Profile extends StatefulWidget {
-  // final String name;
-
-  // Profile({@required this.name});
-
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
+  String username = 'Your ID',
+      name = 'Your Name',
+      description = 'Your Description',
+      url =
+          'https://mobirise.com/bootstrap-template/profile-template/assets/images/timothy-paul-smith-256424-1200x800.jpg';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +20,7 @@ class _ProfileState extends State<Profile> {
           elevation: 0,
           backgroundColor: Color(0xFFEEEEEE),
           brightness: Brightness.light,
-          title: Text('Your ID',
+          title: Text(username,
               style: TextStyle(
                 color: Colors.black87,
                 fontSize: 18,
@@ -28,7 +31,7 @@ class _ProfileState extends State<Profile> {
             color: Colors.black87,
             icon: Icon(Icons.add),
             onPressed: () {
-              print('Closed');
+              print('Add');
             },
           ),
           actions: <Widget>[
@@ -36,19 +39,35 @@ class _ProfileState extends State<Profile> {
               color: Colors.black87,
               icon: Icon(Icons.menu),
               onPressed: () {
-                print('Clicked');
+                print('Menu Clicked!');
               },
             )
           ]),
       body: Container(
         padding: EdgeInsets.only(
-          top: 20,
+          top: 10,
           bottom: 10,
           left: 20,
           right: 20,
         ),
         child: Column(
           children: <Widget>[
+            Container(
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    'See more about Covid-19',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
             Container(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -59,7 +78,7 @@ class _ProfileState extends State<Profile> {
                         CircleAvatar(
                           radius: 45,
                           backgroundImage: NetworkImage(
-                            'https://mobirise.com/bootstrap-template/profile-template/assets/images/timothy-paul-smith-256424-1200x800.jpg',
+                            url,
                           ),
                         ),
                       ],
@@ -74,7 +93,7 @@ class _ProfileState extends State<Profile> {
                       children: <Widget>[
                         Text(
                           // widget.name,
-                          '1',
+                          '0',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -143,7 +162,7 @@ class _ProfileState extends State<Profile> {
               ),
               alignment: Alignment.centerLeft,
               child: Text(
-                'Your Name',
+                name,
                 style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.bold,
@@ -156,7 +175,7 @@ class _ProfileState extends State<Profile> {
               ),
               alignment: Alignment.centerLeft,
               child: Text(
-                'Your Description',
+                description,
                 textAlign: TextAlign.left,
                 style: TextStyle(
                   fontSize: 14,
@@ -176,7 +195,15 @@ class _ProfileState extends State<Profile> {
                         side: BorderSide(color: Colors.black26)),
                     color: Colors.white12,
                     textColor: Colors.black87,
-                    onPressed: () {},
+                    onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => EditProfile(),
+                      //   ),
+                      // );
+                      _awaitReturnValueFromSecondScreen(context);
+                    },
                     child: Text(
                       'Edit Profile',
                       style: TextStyle(
@@ -219,5 +246,22 @@ class _ProfileState extends State<Profile> {
         ),
       ),
     );
+  }
+
+  void _awaitReturnValueFromSecondScreen(BuildContext context) async {
+    // start the SecondScreen and wait for it to finish with a result
+    final result = await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => EditProfile(),
+        ));
+
+    // after the SecondScreen result comes back update the Text widget with it
+    setState(() {
+      username = result[0];
+      name = result[1];
+      description = result[2];
+      url = result[3];
+    });
   }
 }
