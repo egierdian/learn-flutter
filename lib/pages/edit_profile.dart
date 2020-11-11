@@ -66,7 +66,6 @@ class _EditProfileState extends State<EditProfile> {
           right: 20,
         ),
         child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
@@ -137,28 +136,6 @@ class _EditProfileState extends State<EditProfile> {
                 ),
               ),
             ),
-            // Container(
-            //   child: CustomButton(
-            //     text: 'Update',
-            //     onPressed: () {
-            //       if (nameController.text == '') {
-            //         //showToast('Please input your name');
-            //         //showSnackBar('Please input your name');
-            //         //showAlertDialogMaterial('Please input your name');
-            //         showAlertDialogCupertino('Please input your name');
-            //       } else {
-            //         // Navigator.push(
-            //         //   context,
-            //         //   MaterialPageRoute(
-            //         //     builder: (context) => Profile(
-            //         //       name: nameController.text,
-            //         //     ),
-            //         //   ),
-            //         // );
-            //       }
-            //     },
-            //   ),
-            // ),
           ],
         ),
       ),
@@ -176,19 +153,7 @@ class _EditProfileState extends State<EditProfile> {
         fontSize: 16.0);
   }
 
-  showSnackBar(text) {
-    final snackbar = SnackBar(
-      content: Text(text),
-      action: SnackBarAction(
-        label: 'Undo',
-        onPressed: () {
-          print('Clicked Undo!');
-        },
-      ),
-    );
-    globalKey.currentState.showSnackBar(snackbar);
-  }
-
+  // masih belum berhasil save dengan didalam Alert dialog
   showAlertDialogMaterial(text) {
     showDialog(
       context: globalKey.currentContext,
@@ -219,7 +184,7 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
-  // egierdian
+  // @egierdian
   void _sendDataBack(BuildContext context) {
     List<String> list = new List<String>();
     list.add(usernameController.text);

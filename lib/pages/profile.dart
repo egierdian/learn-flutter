@@ -10,8 +10,8 @@ class _ProfileState extends State<Profile> {
   String username = 'Your ID',
       name = 'Your Name',
       description = 'Your Description',
-      url =
-          'https://mobirise.com/bootstrap-template/profile-template/assets/images/timothy-paul-smith-256424-1200x800.jpg';
+      url = 'https://i.ibb.co/6ZbB65B/img.jpg';
+  // 'https://mobirise.com/bootstrap-template/profile-template/assets/images/timothy-paul-smith-256424-1200x800.jpg';
 
   @override
   Widget build(BuildContext context) {
@@ -45,26 +45,34 @@ class _ProfileState extends State<Profile> {
           ]),
       body: Container(
         padding: EdgeInsets.only(
-          top: 10,
+          // top: 0,
           bottom: 10,
           left: 20,
           right: 20,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            // Container(
-            //   child: Column(
-            //     children: <Widget>[
-            //       Text(
-            //         'See more about Covid-19',
-            //         style: TextStyle(
-            //           fontSize: 14,
-            //           color: Colors.blueAccent,
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Colors.black12,
+                    width: 1.0,
+                  ),
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  'See more about Covid-19',
+                  style: TextStyle(
+                    color: Colors.blueAccent,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+              height: 35,
+            ),
             SizedBox(
               height: 20,
             ),
