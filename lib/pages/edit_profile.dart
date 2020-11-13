@@ -184,7 +184,7 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
-  // @egierdian
+  // @
   void _sendDataBack(BuildContext context) {
     List<String> list = new List<String>();
     list.add(usernameController.text);
